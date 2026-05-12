@@ -6,19 +6,19 @@
 
 ## 工作清单
 
-- [ ] 创建 `package.json`
-- [ ] 创建 `pnpm-workspace.yaml`
-- [ ] 创建 `.gitignore`
-- [ ] 创建 `.env.example`
-- [ ] 创建 `apps/`
-- [ ] 创建 `packages/`
-- [ ] 创建 `packages/shared`
-- [ ] 创建 `data/storage`
-- [ ] 添加 `data/storage/.gitkeep`
-- [ ] 配置根脚本：`dev`
-- [ ] 配置根脚本：`build`
-- [ ] 配置根脚本：`lint`
-- [ ] 配置根脚本：`typecheck`
+- [ ✅️ ] 创建 `package.json`
+- [ ✅️ ] 创建 `pnpm-workspace.yaml`
+- [ ✅️ ] 创建 `.gitignore`
+- [ ✅️ ] 创建 `.env.example`
+- [ ✅️ ] 创建 `apps/`
+- [ ✅️ ] 创建 `packages/`
+- [ ✅️ ] 创建 `packages/shared`
+- [ ✅️ ] 创建 `data/storage`
+- [ ✅️ ] 添加 `data/storage/.gitkeep`
+- [ ✅️ ] 配置根脚本：`dev`
+- [ ✅️ ] 配置根脚本：`build`
+- [ ✅️ ] 配置根脚本：`lint`
+- [ ✅️ ] 配置根脚本：`typecheck`
 
 ## 验收标准
 

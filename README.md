@@ -26,3 +26,18 @@ docker compose version
 - Docker Desktop: 4.73.0
 - Docker Engine: 29.4.3
 - Docker Compose: v5.1.3
+
+## Monorepo 基础说明
+
+- `package.json`：根目录工程入口，提供统一的 `dev`、`build`、`lint`、`typecheck` 脚本。
+- `pnpm-workspace.yaml`：声明 pnpm workspace 范围，目前覆盖 `apps/*` 和 `packages/*`。
+- `apps/`：应用项目目录，后续用于放置前端、后端 API、协同服务等子项目。
+- `packages/`：共享包目录，后续用于放置跨应用复用的代码。
+- `packages/shared`：预留的共享基础包目录，可放公共类型、常量和工具函数。
+- `data/storage`：本地运行时存储目录，实际存储内容不提交 Git。
+- `data/storage/.gitkeep`：用于保留空目录结构。
+
+根目录脚本说明：
+
+- `pnpm dev`：递归执行 workspace 内子项目的 `dev` 脚本，用作统一开发入口。
+- `pnpm typecheck`：递归执行 workspace 内子项目的 `typecheck` 脚本，用于统一 TypeScript 类型检查。
