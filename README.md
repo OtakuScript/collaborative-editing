@@ -1,6 +1,23 @@
 # Collaborative Editing
 Collaborative-Editing in agent project
 
+## 项目文档入口
+
+V1 文档集中放在：
+
+```text
+项目方案/v1/README.md
+```
+
+其中包含：
+
+- `V1 项目方案.md`
+- `V1 技术方案.md`
+- `V1 接口文档.md`
+- `V1 测试验收方案.md`
+- `ADR/`
+- `第一轮施工计划/`
+
 ## 环境要求
 
 本项目第一轮施工和本地开发需要：

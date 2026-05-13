@@ -16,3 +16,5 @@ yarn-error.log*
 
 data/storage/*
 !data/storage/.gitkeep
+
+React.md

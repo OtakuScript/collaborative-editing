@@ -62,9 +62,15 @@
 ├── data/
 │   └── storage/
 ├── 项目方案/
-│   ├── AI Agent 文档协作平台 V1 项目方案.md
-│   └── 第一轮施工计划/
-│       └── README.md
+│   └── v1/
+│       ├── README.md
+│       ├── V1 项目方案.md
+│       ├── V1 技术方案.md
+│       ├── V1 接口文档.md
+│       ├── V1 测试验收方案.md
+│       ├── ADR/
+│       └── 第一轮施工计划/
+│           └── README.md
 ├── docker-compose.yml
 ├── package.json
 ├── pnpm-workspace.yaml
@@ -296,6 +302,13 @@ document:{documentId}
 
 如果第一轮容器化前端调试成本过高，可以先保证 `postgres` 稳定运行，前端、后端、协同服务使用本机 `pnpm dev` 启动；但 compose 文件仍应保留完整服务定义。
 
+挂载边界：
+
+- `data/storage` 只挂给 `collab-service`，因为它负责正文读取和保存。
+- `api-service` 不直接挂载 `data/storage`。
+- `web-app` 不挂载 `data/storage`。
+- `postgres` 只使用自己的数据卷，不与 `data/storage` 混用。
+
 ### 8.2 端口
 
 本地端口：
@@ -305,6 +318,8 @@ document:{documentId}
 - `collab-service`: `1234`
 - `postgres`: `5432`
 
+以上为默认开发端口。如果本机端口被占用，可以修改 `.env` 中的 `WEB_PORT`、`API_PORT`、`COLLAB_PORT`、`POSTGRES_PORT`，并同步修改对应的 URL 配置。
+
 ### 8.3 环境变量
 
 `.env.example` 包含：
@@ -313,10 +328,20 @@ document:{documentId}
 DATABASE_URL=postgresql://postgres:postgres@localhost:5432/collab_editing
 JWT_SECRET=change-me
 STORAGE_ROOT=./data/storage
+WEB_PORT=5173
+API_PORT=3000
+COLLAB_PORT=1234
+POSTGRES_PORT=5432
+API_INTERNAL_BASE_URL=http://localhost:3000
 COLLAB_WS_URL=ws://localhost:1234
 VITE_API_BASE_URL=http://localhost:3000
 VITE_COLLAB_WS_URL=ws://localhost:1234
 ```
+
+说明：
+
+- `WEB_PORT`、`API_PORT`、`COLLAB_PORT`、`POSTGRES_PORT` 是本机默认开发端口。
+- 如果 `API_PORT`、`COLLAB_PORT` 或 `POSTGRES_PORT` 被改动，需要同步更新 `DATABASE_URL`、`API_INTERNAL_BASE_URL`、`COLLAB_WS_URL`、`VITE_API_BASE_URL`、`VITE_COLLAB_WS_URL` 中对应的端口。
 
 ## 9. 工作清单
 
@@ -325,7 +350,7 @@ VITE_COLLAB_WS_URL=ws://localhost:1234
 清单目录：
 
 ```text
-项目方案/第一轮施工计划/工作清单/
+项目方案/v1/第一轮施工计划/工作清单/
 ```
 
 清单文件：
@@ -338,6 +363,7 @@ VITE_COLLAB_WS_URL=ws://localhost:1234
 - [ ] `工作清单/05-Docker与环境.md`：Docker Compose、环境变量、端口和挂载目录。
 - [ ] `工作清单/06-验收.md`：安装、构建、启动、路由、健康检查和 WebSocket 验收。
 - [ ] `工作清单/07-完成标志.md`：第一轮完成判定和范围控制。
+- [ ] `工作清单/08-架构边界与ADR.md`：V1 架构边界补充方案、Markdown 文件所有权、权限校验和 ADR。
 
 ## 10. 验收标准
 
